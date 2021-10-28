@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/pixi.min.js"></script>
+    <script>
+		var app = new PIXI.Application(1080,2340);
+        document.body.appendChild(app.view);
+        
+        var bg = new PIXI.Sprite.fromImage("res/bg0.png");
+        bg.scale.x=0.33;
+        bg.scale.y=0.33;
+        app.stage.addChild(bg);
+        
+        var boat=new PIXI.Sprite.fromImage("res/boat.png");
+        boat.x=133;
+        boat.y=366;
+        boat.scale.x=0.33;
+        boat.scale.y=0.33;
+        app.stage.addChild(boat);
+        
+        
+        var bgs=new PIXI.Sprite.fromImage("res/baoguosi.png");
+        bgs.scale.x=0.33;
+        bgs.scale.y=0.33;
+        bgs.x=10;
+        bgs.y=76;
+        app.stage.addChild(bgs);
+        
+        var lwt=new PIXI.Sprite.fromImage("res/laowaitan.png");
+        lwt.scale.x=0.33;
+        lwt.scale.y=0.33;
+        lwt.x=140;
+        lwt.y=216;
+        app.stage.addChild(lwt);
+        
+        var tyg=new PIXI.Sprite.fromImage("res/tianyige.png");
+        tyg.scale.x=0.33;
+        tyg.scale.y=0.33;
+        tyg.x=66;
+        tyg.y=450;
+        app.stage.addChild(tyg);
+        
+        var aqhg=new PIXI.Sprite.fromImage("res/anqinghuiguan.png");
+        aqhg.scale.x=0.33;
+        aqhg.scale.y=0.33;
+        aqhg.x=243;
+        aqhg.y=400;
+        app.stage.addChild(aqhg);
+        
+        var ayws=new PIXI.Sprite.fromImage("res/ayuwangsi.png");
+        ayws.scale.x=0.33;
+        ayws.scale.y=0.33;
+        ayws.x=233;
+        ayws.y=633;
+        app.stage.addChild(ayws);
+        
+        var dtu=new PIXI.Text("地图");
+        dtu.x=166;
+        dtu.y=22;
+        dtu.style.fontSize=30;
+        app.stage.addChild(dtu);
+        
+        var xce=new PIXI.Text("相册");
+        xce.x=300;
+        xce.y=16;
+        xce.style.fontSize=20;
+        app.stage.addChild(xce);
+        
+        var jies=new PIXI.Text("结束");
+        jies.x=3;
+        jies.y=16;
+        jies.style.fontSize=20;
+        app.stage.addChild(jies);
+        
+        var speedx=0;
+        var speedy=0
+        app.ticker.add(animate);
+        function animate() {
+        	if(boat.x>90&&boat.y<450){
+        		boat.x-=speedx;
+	        	boat.y+=speedy;
+	        }
+        }
+        
+        tyg.interactive=true;
+        tyg.on("click",move1);
+        tyg.on("touchstart",move1);
+        function move1(){
+			if(speedx==0){
+				speedx=0.5;
+				speedy=3
+			}
+        }
+        
+        
+    </script>
+</body>
+</html>
