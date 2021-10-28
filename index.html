@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="js/pixi.min.js"></script>
+    <script>
+		var app = new PIXI.Application(1080,2340);
+        document.body.appendChild(app.view);
+        
+        var bg = new PIXI.Sprite.fromImage("res/bg.png");
+//      bg.scale.x=0.33;
+//      bg.scale.y=0.33;
+        app.stage.addChild(bg);
+        var bg0 = new PIXI.Sprite.fromImage("res/bg0.png");
+        bg0.scale.x=0.33;
+        bg0.scale.y=0.33;
+        app.stage.addChild(bg0);
+        
+        var boat=new PIXI.Sprite.fromImage("res/boat.png");
+        boat.x=133;
+        boat.y=366;
+        boat.scale.x=0.33;
+        boat.scale.y=0.33;
+        app.stage.addChild(boat);
+        
+        
+        var bgs=new PIXI.Sprite.fromImage("res/baoguosi.png");
+        bgs.scale.x=0.33;
+        bgs.scale.y=0.33;
+        bgs.x=10;
+        bgs.y=76;
+        app.stage.addChild(bgs);
+        
+        var lwt=new PIXI.Sprite.fromImage("res/laowaitan.png");
+        lwt.scale.x=0.33;
+        lwt.scale.y=0.33;
+        lwt.x=140;
+        lwt.y=216;
+        app.stage.addChild(lwt);
+        
+        var tyg=new PIXI.Sprite.fromImage("res/tianyige.png");
+        tyg.scale.x=0.33;
+        tyg.scale.y=0.33;
+        tyg.x=66;
+        tyg.y=450;
+        app.stage.addChild(tyg);
+        
+        var aqhg=new PIXI.Sprite.fromImage("res/anqinghuiguan.png");
+        aqhg.scale.x=0.33;
+        aqhg.scale.y=0.33;
+        aqhg.x=243;
+        aqhg.y=400;
+        app.stage.addChild(aqhg);
+        
+        var ayws=new PIXI.Sprite.fromImage("res/ayuwangsi.png");
+        ayws.scale.x=0.33;
+        ayws.scale.y=0.33;
+        ayws.x=233;
+        ayws.y=553;
+        app.stage.addChild(ayws);
+        
+        var dtu=new PIXI.Text("地图");
+        dtu.x=166;
+        dtu.y=22;
+        dtu.style.fontSize=30;
+        app.stage.addChild(dtu);
+        
+        var xce=new PIXI.Text("相册");
+        xce.x=300;
+        xce.y=16;
+        xce.style.fontSize=20;
+        app.stage.addChild(xce);
+        
+        var jies=new PIXI.Text("结束");
+        jies.x=3;
+        jies.y=16;
+        jies.style.fontSize=20;
+        app.stage.addChild(jies);
+        
+        var j=new PIXI.Text("关闭");
+        var tp=new PIXI.Sprite.fromImage("res/photo.png");
+        
+        xce.interactive=true;
+        xce.on("click",vist);
+        xce.on("touchstart",vist);
+        function vist(){
+
+//      	var tp=new PIXI.Sprite.fromImage("res/photo.png");
+        	tp.scale.x=0.33;
+        	tp.scale.y=0.33;
+        	tp.x=0;
+        	tp.y=60;
+        	app.stage.addChild(tp);
+        	
+//      	var j=new PIXI.Text("关闭");
+        	j.x=250;
+        	j.y=100;
+        	j.style.fontSize=30;
+        	app.stage.addChild(j);
+        }
+        
+//      var j=new PIXI.Text("关闭");
+//      	j.x=250;
+//      	j.y=100;
+//      	j.style.fontSize=30;
+//      	app.stage.addChild(j);
+        	
+        j.interactive=true;
+        j.on("click",vi);
+        j.on("touchstart",vi);
+        function vi(){
+        	tp.visible=false;
+        	j.visible=false;
+        }
+        
+        
+        tyg.interactive=true;
+        tyg.on("click",move1);
+        tyg.on("touchstart",move1);
+        function move1(){
+        	if(boat.x==133&&boat.y==366){
+        		app.ticker.add(animate1);
+        		function animate1(){
+        			if(boat.x>90&&boat.y<450){
+        				boat.x-=0.5;
+	        			boat.y+=3;
+        			}
+        		}
+        	}
+        	if(boat.y>=216){
+        		app.ticker.add(animate11);
+        		function animate11(){
+        			if(boat.x>90&&boat.y<450){
+        				boat.x-=1;
+	        			boat.y+=2;
+        			}
+        		}
+        	}
+        }
+        
+        lwt.interactive=true;
+        lwt.on("click",move2);
+        lwt.on("touchstart",move2);
+        function move2(){
+        	if(boat.x>=133&&boat.y>=366){
+        		app.ticker.add(animate2);
+        		function animate2(){
+        			if(boat.x<=200&&boat.y>=200){
+        				boat.x+=1;
+	        			boat.y-=2;
+        			}
+        		}
+        	}
+//      	if(boat.x<=90&&boat.y>=450){
+//      		app.ticker.add(animate22);
+//      		function animate22(){
+//      			if(boat.x<=200&&boat.y<210){
+//      				boat.x+=1;
+//	        			boat.y-=2;
+//      			}
+//      		}
+//      	}
+//      	
+        }
+        
+//      tyg.interactive=true;
+//      tyg.on("click",move1);
+//      tyg.on("touchstart",move1);
+//      function move1(){
+//      	var speedx;
+//      	var speedy;
+//      	if(boat.x==133&&boat.y==366){
+//      		speedx=0.5;
+//      		speedy=3;
+//      		app.ticker.add(animate1);
+//      		function animate1(){
+//      			if(boat.x>90&&boat.y<450){
+//      				boat.x-=speedx;
+//	        			boat.y+=speedy;
+//      			}
+//      		}
+//      	}
+//      	if(boat.x>=-10.8&&boat.y>=153){
+//      		speedx=2.7;
+//      		speedy=3;
+//      		app.ticker.add(animate11);
+//      		function animate11(){
+//      			if(boat.x<30&&boat.y<366){
+//      				var a;
+////      				a=speedx;
+//      				boat.x+=1.2;
+//	        			boat.y+=speedy;
+//      			}
+//      			else if(boat.x>=30&&boat.y<366){
+//      				boat.x+=speedx;
+//      				boat.y+=speedy;
+//      				console.log(boat.x);
+//      				console.log(boat.y);
+//      			}
+//      			else if(boat.y<450&&boat.y>=366){
+//      				
+//      				boat.x-=0.5;
+//	        			boat.y+=3;
+//      			}
+//      		}
+//      	}
+//      }
+//      var bx=0;
+//      var by=0;
+//      bgs.interactive=true;
+//      bgs.on("click",move2);
+//      bgs.on("touchstart",move2);
+//      function move2(){
+//      	var speedx;
+//      	var speedy;
+////      	var bx;
+////      	var by;
+//      	if(boat.x<=133&&boat.y<=366){
+//      		speedx=2.7;
+//      		speedy=3;
+//      		app.ticker.add(animate2);
+//      		function animate2(){
+//      			if(boat.x>30&&boat.y>76){
+//      				boat.x-=speedx;
+//	        			boat.y-=speedy;
+//	        			bx=boat.x;
+//	        			by=boat.y;
+//      			}
+//      			else if(boat.x>-10&&boat.y>76){
+//      				var a;
+//      				a=speedx-1.5;
+//      				boat.x-=a;
+//      				boat.y-=speedy;
+//      				bx=boat.x;
+//	        			by=boat.y;
+//      			}
+////      			console.log(boat.y);
+//      		}
+//      		
+//      	}
+//      	
+//      }
+        
+//      var speedx=0;
+//      var speedy=0;
+//      app.ticker.add(animate);
+//      function animate() {
+//      	if(boat.x>90&&boat.y<450){
+//      		boat.x-=speedx;
+//	        	boat.y+=speedy;
+//	        }
+//      }
+        
+//      tyg.interactive=true;
+//      tyg.on("click",move1);
+//      tyg.on("touchstart",move1);
+//      function move1(){
+//      	var speedx=0;
+//      	var speedy=0;
+//      	boat.x=133;
+//      	boat.y=366;
+//			if(speedx==0){
+//				speedx=0.5;
+//				speedy=3;
+//			}
+////			app.ticker.add(animate);
+////      	function animate() {
+//      	if(boat.x>90&&boat.y<450){
+//      		boat.x-=speedx;
+//	        	boat.y+=speedy;
+//	        }
+////      }
+//      }
+//      
+////      var speedx2=0;
+////      var speedy2=0;
+////      var speedxx=0;
+////      app.ticker.add(animate2);
+////      function animate2() {
+////      	if(boat.x>30&&boat.y>20){
+////      		boat.x-=speedx2;
+////	        	boat.y-=speedy2;
+////	        }
+////      	else if(boat.x>-10&&boat.y>76){
+////      		boat.x-=speedxx;
+////      		boat.y-=speedy2;
+////      	}
+////      }
+//      
+//      bgs.interactive=true;
+//      bgs.on("click",move2);
+//      bgs.on("touchstart",move2);
+//      function move2(){
+//      	var speedx2=0;
+//      	var speedy2=0;
+//      	var speedxx=0;
+//	
+//      	boat.x=133;
+//      	boat.y=366;
+//			if(speedx2==0){
+//				speedx2=2.7;
+//				speedy2=3;
+//				speedxx=1;
+//			}
+////			app.ticker.add(animate2);
+////      	function animate2() {
+//      		if(boat.x>30&&boat.y>76){
+//      			boat.x-=speedx2;
+//	        		boat.y-=speedy2;
+//	        	}
+//      		else if(boat.x>-10&&boat.y>76){
+//      			boat.x-=speedxx;
+//      			boat.y-=speedy2;
+//      		}
+////      	}
+//      }
+//      
+////      var speedx3=0;
+////      var speedy3=0;
+//      lwt.interactive=true;
+//      lwt.on("click",move3);
+//      lwt.on("touchstart",move3);
+//      function move3(){
+//      	var speedx3=0;
+//      	var speedy3=0;
+//      	boat.x=133;
+//      	boat.y=366;
+//			if(speedx3==0){
+//				speedx3=1.2;
+//				speedy3=3;
+//			}
+////			app.ticker.add(animate3);
+////      	function animate3() {
+//      	if(boat.x<180&&boat.y>216){
+//      		boat.x+=speedx3;
+//	        	boat.y-=speedy3;
+//	        }
+////      }
+//      }
+//      
+//      app.ticker.add(animate);
+//      function animate(){
+//      	move3();
+//      	move2();
+//      	move1();
+//      }
+        
+    </script>
+</body>
+</html>
